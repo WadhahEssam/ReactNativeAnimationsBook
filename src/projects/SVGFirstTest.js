@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Svg, {
   Circle,
+  G,
   Path,
   Rect,
   SvgCssUri,
@@ -22,18 +23,61 @@ const AnimatedPath = Animated.createAnimatedComponent(Path);
 const SVGFirstTest = () => {
   const pathAnim = useRef(new Animated.Value(320)).current;
 
+  const rightPathAnim = useRef(new Animated.Value(-320)).current;
+  const leftPathAnim = useRef(new Animated.Value(320)).current;
+
   const show = () => {
     // Will change fadeAnim value to 1 in 5 seconds
     Animated.loop(
       Animated.sequence([
         Animated.timing(pathAnim, {
-          toValue: 0,
+          toValue: 160,
           duration: 2000,
           easing: Easing.linear,
           useNativeDriver: true,
         }),
         Animated.timing(pathAnim, {
           toValue: -320,
+          duration: 2000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+      ]),
+    ).start();
+
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(rightPathAnim, {
+          toValue: -160,
+          duration: 2000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+        Animated.timing(rightPathAnim, {
+          toValue: 0,
+          duration: 2000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+        Animated.timing(rightPathAnim, {
+          toValue: 160,
+          duration: 2000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+      ]),
+    ).start();
+
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(leftPathAnim, {
+          toValue: 160,
+          duration: 2000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+        Animated.timing(leftPathAnim, {
+          toValue: 320,
           duration: 2000,
           easing: Easing.linear,
           useNativeDriver: true,
@@ -101,6 +145,92 @@ const SVGFirstTest = () => {
   return (
     <SafeAreaView>
       <ScrollView>
+        <View
+          style={[
+            {
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: 100,
+            },
+          ]}>
+          <Svg
+            scale={1}
+            xml={xml3}
+            width="100%"
+            height={Dimensions.get('screen').width}>
+            <AnimatedPath
+              strokeWidth={2}
+              strokeDasharray={320}
+              strokeDashoffset={rightPathAnim}
+              rotation={-45}
+              d="M 90, 250 v -10 h 70 v -30 l 30, 40 l -30, 40 v -30 h -70 v -10"
+              stroke="red"
+            />
+            <AnimatedPath
+              strokeWidth={2}
+              strokeDasharray={320}
+              strokeDashoffset={leftPathAnim}
+              rotation={-45}
+              d="M 90, 250 v -10 h 70 v -30 l 30, 40 l -30, 40 v -30 h -70 v -10"
+              stroke="red"
+            />
+
+            <AnimatedPath
+              strokeWidth={2}
+              strokeDasharray={320}
+              strokeDashoffset={rightPathAnim}
+              rotation={45}
+              d="M 350, 0 v -10 h 70 v -30 l 30, 40 l -30, 40 v -30 h -70 v -10"
+              stroke="red"
+            />
+
+            <AnimatedPath
+              strokeWidth={2}
+              strokeDasharray={320}
+              strokeDashoffset={leftPathAnim}
+              rotation={45}
+              d="M 350, 0 v -10 h 70 v -30 l 30, 40 l -30, 40 v -30 h -70 v -10"
+              stroke="red"
+            />
+
+            <G rotation={180} origin="200, 185">
+              <AnimatedPath
+                strokeWidth={2}
+                strokeDasharray={320}
+                strokeDashoffset={rightPathAnim}
+                rotation={-45}
+                d="M 80, 260 v -10 h 70 v -30 l 30, 40 l -30, 40 v -30 h -70 v -10"
+                stroke="red"
+              />
+              <AnimatedPath
+                strokeWidth={2}
+                strokeDasharray={320}
+                strokeDashoffset={leftPathAnim}
+                rotation={-45}
+                d="M 80, 260 v -10 h 70 v -30 l 30, 40 l -30, 40 v -30 h -70 v -10"
+                stroke="red"
+              />
+
+              <AnimatedPath
+                strokeWidth={2}
+                strokeDasharray={320}
+                strokeDashoffset={rightPathAnim}
+                rotation={45}
+                d="M 350, 10 v -10 h 70 v -30 l 30, 40 l -30, 40 v -30 h -70 v -10"
+                stroke="red"
+              />
+              <AnimatedPath
+                strokeWidth={2}
+                strokeDasharray={320}
+                strokeDashoffset={leftPathAnim}
+                rotation={45}
+                d="M 350, 10 v -10 h 70 v -30 l 30, 40 l -30, 40 v -30 h -70 v -10"
+                stroke="red"
+              />
+            </G>
+          </Svg>
+        </View>
+
         <View
           style={[
             {
