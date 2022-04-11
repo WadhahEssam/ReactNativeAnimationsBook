@@ -1,9 +1,51 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import {SafeAreaView, View, ScrollView, Dimensions} from 'react-native';
-import Svg, {Circle, Rect, SvgCssUri, SvgUri, SvgXml} from 'react-native-svg';
+import React, {useEffect, useRef} from 'react';
+import {
+  SafeAreaView,
+  View,
+  ScrollView,
+  Dimensions,
+  Animated,
+  Easing,
+} from 'react-native';
+import Svg, {
+  Circle,
+  Path,
+  Rect,
+  SvgCssUri,
+  SvgUri,
+  SvgXml,
+} from 'react-native-svg';
+
+const AnimatedPath = Animated.createAnimatedComponent(Path);
 
 const SVGFirstTest = () => {
+  const pathAnim = useRef(new Animated.Value(320)).current;
+
+  const show = () => {
+    // Will change fadeAnim value to 1 in 5 seconds
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(pathAnim, {
+          toValue: 0,
+          duration: 2000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+        Animated.timing(pathAnim, {
+          toValue: -320,
+          duration: 2000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+      ]),
+    ).start();
+  };
+
+  useEffect(() => {
+    show();
+  });
+
   const xml = `
   <svg width="32" height="32" viewBox="0 0 32 32">
     <path
@@ -43,7 +85,17 @@ const SVGFirstTest = () => {
         <polyline points="235,235 300, 300" style="fill:none;stroke:black;stroke-width:1" />
         <polyline points="235,65 300, 0" style="fill:none;stroke:black;stroke-width:1" />
         <polyline points="235,65 0, 300" style="fill:none;stroke:black;stroke-width:1" />
+
+        <path stroke-dasharray="20,5,5,1,1,0" d="M 40, 50 h 70 v -30 l 30, 40 l -30, 40 v -30 h -70 v -20" stroke="red" />
+
+        <path d="M 20, 50 Q120 60, 20 80 T 20, 20" stroke="red" />
     </svg>
+`;
+
+  const xml3 = `
+  <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-dasharray="20,5,5,1,1,0" d="M 40, 50 h 70 v -30 l 30, 40 l -30, 40 v -30 h -70 v -20" stroke="red" />
+  </svg>
 `;
 
   return (
@@ -63,6 +115,30 @@ const SVGFirstTest = () => {
             width="100%"
             height={Dimensions.get('screen').width}
           />
+        </View>
+
+        <View
+          style={[
+            {
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: 100,
+            },
+          ]}>
+          <Svg
+            scale={1}
+            xml={xml3}
+            width="100%"
+            height={Dimensions.get('screen').width}>
+            <AnimatedPath
+              strokeWidth={2}
+              strokeDasharray={320}
+              strokeDashoffset={pathAnim}
+              rotation={20}
+              d="M 180, 0 h 70 v -30 l 30, 40 l -30, 40 v -30 h -70 v -20"
+              stroke="red"
+            />
+          </Svg>
         </View>
 
         <View
