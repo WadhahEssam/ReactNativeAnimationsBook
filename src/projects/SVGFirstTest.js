@@ -60,7 +60,7 @@ const SVGFirstTest = () => {
           useNativeDriver: true,
         }),
         Animated.timing(rightPathAnim, {
-          toValue: 160,
+          toValue: -320,
           duration: 2000,
           easing: Easing.linear,
           useNativeDriver: true,
@@ -77,6 +77,12 @@ const SVGFirstTest = () => {
           useNativeDriver: true,
         }),
         Animated.timing(leftPathAnim, {
+          toValue: 0,
+          duration: 2000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+        Animated.timing(rightPathAnim, {
           toValue: 320,
           duration: 2000,
           easing: Easing.linear,
