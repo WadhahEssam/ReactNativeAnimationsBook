@@ -53,7 +53,7 @@ const ReanimatedRemoveOnSwipe = () => {
 
   return (
     <SafeAreaView>
-      <Text style={{fontSize: 60, marginStart: 10, marginBottom: 20}}>
+      <Text style={{fontSize: 60, marginStart: 20, marginVertical: 0}}>
         Tasks
       </Text>
       <ScrollView
