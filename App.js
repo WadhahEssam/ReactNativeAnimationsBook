@@ -23,6 +23,7 @@ import Reanimated from './src/projects/Reanimated';
 import ReanimatedGustureHandling from './src/projects/ReanimatedGustureHandling';
 import SkiaHandsOn from './src/projects/SkiaHandsOn';
 import SVGFirstTest from './src/projects/SVGFirstTest';
+import ReanimatedScrollView from './src/projects/ReanimatedScrollView';
 
 const ProjectButton = ({title, setActiveProject}) => {
   return (
@@ -96,6 +97,13 @@ const App = () => {
                 setActiveProject('ReanimatedGustureHandling');
               }}
             />
+            <ProjectButton
+              title="📜 Reanimated Scroll View"
+              setActiveProject={() => {
+                setActiveProject('ReanimatedScrollView');
+              }}
+            />
+            
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -116,6 +124,9 @@ const App = () => {
   }
   if (activeProject === 'ReanimatedGustureHandling') {
     return <ReanimatedGustureHandling />;
+  }
+  if (activeProject === 'ReanimatedScrollView') {
+    return <ReanimatedScrollView />
   }
 };
 
