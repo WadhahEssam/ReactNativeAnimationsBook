@@ -18,6 +18,10 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import Charts from './src/projects/Charts';
+import Reanimated from './src/projects/Reanimated';
+import ReanimatedGustureHandling from './src/projects/ReanimatedGustureHandling';
+import SkiaHandsOn from './src/projects/SkiaHandsOn';
 import SVGFirstTest from './src/projects/SVGFirstTest';
 
 const ProjectButton = ({title, setActiveProject}) => {
@@ -68,6 +72,30 @@ const App = () => {
                 setActiveProject('SVGFirstTest');
               }}
             />
+            <ProjectButton
+              title="🎨 Skia"
+              setActiveProject={() => {
+                setActiveProject('SkaiHandsOn');
+              }}
+            />
+            <ProjectButton
+              title="📊 Charts"
+              setActiveProject={() => {
+                setActiveProject('Charts');
+              }}
+            />
+            <ProjectButton
+              title="🦎 React Native ReAnimated 2.0"
+              setActiveProject={() => {
+                setActiveProject('Reanimated');
+              }}
+            />
+            <ProjectButton
+              title="👆 Reanimated Gusture Handling"
+              setActiveProject={() => {
+                setActiveProject('ReanimatedGustureHandling');
+              }}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -76,6 +104,18 @@ const App = () => {
 
   if (activeProject === 'SVGFirstTest') {
     return <SVGFirstTest />;
+  }
+  if (activeProject === 'SkaiHandsOn') {
+    return <SkiaHandsOn />;
+  }
+  if (activeProject === 'Charts') {
+    return <Charts />;
+  }
+  if (activeProject === 'Reanimated') {
+    return <Reanimated />;
+  }
+  if (activeProject === 'ReanimatedGustureHandling') {
+    return <ReanimatedGustureHandling />;
   }
 };
 
