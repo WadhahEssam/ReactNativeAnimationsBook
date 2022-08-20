@@ -24,6 +24,7 @@ import ReanimatedGustureHandling from './src/projects/ReanimatedGustureHandling'
 import SkiaHandsOn from './src/projects/SkiaHandsOn';
 import SVGFirstTest from './src/projects/SVGFirstTest';
 import ReanimatedScrollView from './src/projects/ReanimatedScrollView';
+import ReanimatedRemoveOnSwipe from './src/projects/ReanimatedRemoveOnSwipe';
 
 const ProjectButton = ({title, setActiveProject}) => {
   return (
@@ -103,6 +104,12 @@ const App = () => {
                 setActiveProject('ReanimatedScrollView');
               }}
             />
+             <ProjectButton
+              title="🗑 Reanimated Remove On Swipe"
+              setActiveProject={() => {
+                setActiveProject('ReanimatedRemoveOnSwipe');
+              }}
+            />
             
           </View>
         </ScrollView>
@@ -127,6 +134,9 @@ const App = () => {
   }
   if (activeProject === 'ReanimatedScrollView') {
     return <ReanimatedScrollView />
+  }
+  if (activeProject === 'ReanimatedRemoveOnSwipe') {
+    return <ReanimatedRemoveOnSwipe />
   }
 };
 
