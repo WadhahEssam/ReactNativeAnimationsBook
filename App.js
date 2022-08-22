@@ -25,6 +25,7 @@ import SkiaHandsOn from './src/projects/SkiaHandsOn';
 import SVGFirstTest from './src/projects/SVGFirstTest';
 import ReanimatedScrollView from './src/projects/ReanimatedScrollView';
 import ReanimatedRemoveOnSwipe from './src/projects/ReanimatedRemoveOnSwipe';
+import ReanimatedCircularProgress from './src/projects/ReanimatedCircularProgress';
 
 const ProjectButton = ({title, setActiveProject}) => {
   return (
@@ -104,13 +105,18 @@ const App = () => {
                 setActiveProject('ReanimatedScrollView');
               }}
             />
-             <ProjectButton
+            <ProjectButton
               title="🗑 Reanimated Remove On Swipe"
               setActiveProject={() => {
                 setActiveProject('ReanimatedRemoveOnSwipe');
               }}
             />
-            
+            <ProjectButton
+              title="🔘 Reanimated Circular Progress"
+              setActiveProject={() => {
+                setActiveProject('ReanimatedCircularProgress');
+              }}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -133,10 +139,13 @@ const App = () => {
     return <ReanimatedGustureHandling />;
   }
   if (activeProject === 'ReanimatedScrollView') {
-    return <ReanimatedScrollView />
+    return <ReanimatedScrollView />;
   }
   if (activeProject === 'ReanimatedRemoveOnSwipe') {
-    return <ReanimatedRemoveOnSwipe />
+    return <ReanimatedRemoveOnSwipe />;
+  }
+  if (activeProject === 'ReanimatedCircularProgress') {
+    return <ReanimatedCircularProgress />;
   }
 };
 
