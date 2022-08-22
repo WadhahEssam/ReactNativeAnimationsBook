@@ -143,6 +143,20 @@ const TaskItem = ({task, onDismiss, simultaneousHandlers}) => {
     };
   }, []);
 
+  const onButtonPress = () => {
+    if (onDismiss) {
+      itemHeight.value = withTiming(0, {duration: 200});
+      buttonOpacity.value = withTiming(0, {duration: 100});
+      marginBottom.value = withTiming(0, {duration: 200});
+      scaleY.value = withTiming(0, {duration: 200});
+      translateX.value = withTiming(-ScreenWidth, {duration: 200}, (finished) => {
+        if (finished) {
+          runOnJS(onDismiss)(task);
+        }
+      })
+    }
+  }
+
   return (
     <View
       style={{
@@ -163,11 +177,7 @@ const TaskItem = ({task, onDismiss, simultaneousHandlers}) => {
           buttonStyle,
         ]}>
         <TouchableOpacity
-          onPress={() => {
-            if (onDismiss) {
-              onDismiss(task);
-            }
-          }}>
+          onPress={onButtonPress}>
           <Text style={{color: 'red', fontWeight: '900'}}>REMOVE</Text>
         </TouchableOpacity>
       </Animated.View>
