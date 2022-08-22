@@ -26,6 +26,7 @@ import SVGFirstTest from './src/projects/SVGFirstTest';
 import ReanimatedScrollView from './src/projects/ReanimatedScrollView';
 import ReanimatedRemoveOnSwipe from './src/projects/ReanimatedRemoveOnSwipe';
 import ReanimatedCircularProgress from './src/projects/ReanimatedCircularProgress';
+import ReanimatedRippleEffect from './src/projects/ReanimatedRippleEffect';
 
 const ProjectButton = ({title, setActiveProject}) => {
   return (
@@ -117,6 +118,12 @@ const App = () => {
                 setActiveProject('ReanimatedCircularProgress');
               }}
             />
+            <ProjectButton
+              title="🔲 Reanimated Ripple Effect"
+              setActiveProject={() => {
+                setActiveProject('ReanimatedRippleEffect');
+              }}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -146,6 +153,9 @@ const App = () => {
   }
   if (activeProject === 'ReanimatedCircularProgress') {
     return <ReanimatedCircularProgress />;
+  }
+  if (activeProject === 'ReanimatedRippleEffect') {
+    return <ReanimatedRippleEffect />;
   }
 };
 
