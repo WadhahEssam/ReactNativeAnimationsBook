@@ -25,7 +25,7 @@ const ReanimatedScrollView = () => {
       pagingEnabled
       showsHorizontalScrollIndicator={false}
       horizontal
-      style={{flex: 1}}>
+      style={{height: Dimensions.get('screen').height}}>
       {WORDS.map((word, index) => {
         return (
           <Page key={word} title={word} index={index} translateX={translateX} />
