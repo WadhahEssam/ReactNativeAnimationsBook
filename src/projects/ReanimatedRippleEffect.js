@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Dimensions, Text, View} from 'react-native';
 import {GestureDetector, Gesture} from 'react-native-gesture-handler';
 import Animated, {
   measure,
@@ -11,7 +11,7 @@ import Animated, {
 
 const ReanimatedRippleEffect = () => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={{height: Dimensions.get('screen').height, justifyContent: 'center', alignItems: 'center'}}>
       <Ripple style={{ height: 150, width: 300}}>
         <Text
           style={{
@@ -40,8 +40,8 @@ const Ripple = ({style, onTap, children}) => {
 
   const onAnimationFinish = () => {
     'worklet';
+    rippleOpacity.value = withTiming(0.7, { duration: 200 });
     rippleRadius.value = 0;
-    rippleOpacity.value = 0.7;
   };
 
   const calculateRectDiagonal = (height, width) => {
@@ -51,7 +51,6 @@ const Ripple = ({style, onTap, children}) => {
 
   const startRippling = ({e}) => {
     'worklet';
-    const layout = measure(aRef);
     ripplePositionX.value = e.x;
     ripplePositionY.value = e.y;
     rippleRadius.value = withTiming(calculateRectDiagonal(height, width), {
@@ -61,13 +60,12 @@ const Ripple = ({style, onTap, children}) => {
 
   const endRippling = () => {
     'worklet';
-    const layout = measure(aRef);
     if (rippleOpacity.value > 0.3) {
       rippleRadius.value = withTiming(calculateRectDiagonal(height, width), {
         duration: ANIMATION_DURATION,
       }, (finished) => {
         if (finished) {
-          rippleOpacity.value = withTiming(0, {duration: 200}, finished => {
+          rippleOpacity.value = withTiming(0.1, {duration: 200}, finished => {
             if (finished) {
               onAnimationFinish();
             }
@@ -75,7 +73,7 @@ const Ripple = ({style, onTap, children}) => {
         }
       });
     } else {
-      rippleOpacity.value = withTiming(0, {duration: 200}, finished => {
+      rippleOpacity.value = withTiming(0.1, {duration: 200}, finished => {
         if (finished) {
           onAnimationFinish();
         }
@@ -88,9 +86,6 @@ const Ripple = ({style, onTap, children}) => {
       startRippling({e});
     })
     .maxDuration(10000)
-    .onTouchesCancelled(() => {
-      // endRippling();
-    })
     .onFinalize(() => {
       endRippling();
     })

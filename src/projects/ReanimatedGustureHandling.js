@@ -48,9 +48,9 @@ const ReanimatedGustureHandling = () => {
       // console.log(`onActive: tX: ${e.translationX}, ctX: ${context.translateX}, tY: ${e.translationY}, ctY: ${context.transalteY}`);
     },
     onEnd: e => {
-      console.log(
-        `onEnd: tX: ${e.translationX}, tY: ${e.translationY}, borderRadius: ${CIRCLE_RADIUS}, atX: ${e.absoluteX}`,
-      );
+      // console.log(
+      //   `onEnd: tX: ${e.translationX}, tY: ${e.translationY}, borderRadius: ${CIRCLE_RADIUS}, atX: ${e.absoluteX}`,
+      // );
       if (
         Math.sqrt(
           transalteY.value * transalteY.value +

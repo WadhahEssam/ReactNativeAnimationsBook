@@ -7,7 +7,7 @@
  * @flow strict-local
  */
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,7 +17,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Charts from './src/projects/Charts';
 import Reanimated from './src/projects/Reanimated';
 import ReanimatedGustureHandling from './src/projects/ReanimatedGustureHandling';
@@ -27,33 +27,40 @@ import ReanimatedScrollView from './src/projects/ReanimatedScrollView';
 import ReanimatedRemoveOnSwipe from './src/projects/ReanimatedRemoveOnSwipe';
 import ReanimatedCircularProgress from './src/projects/ReanimatedCircularProgress';
 import ReanimatedRippleEffect from './src/projects/ReanimatedRippleEffect';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-const ProjectButton = ({title, setActiveProject}) => {
+const ProjectButton = ({ title, setActiveProject }) => {
   return (
     <TouchableOpacity
       onPress={setActiveProject}
       style={{
         borderColor: 'grey',
         backgroundColor: 'white',
-        borderWidth: 0.5,
+        borderWidth: 1,
         borderRadius: 6,
         paddingHorizontal: 10,
         paddingVertical: 15,
         marginBottom: 12,
       }}>
-      <Text style={{fontSize: 20, fontWeight: '300'}}>{title}</Text>
+      <Text style={{ fontSize: 20, fontWeight: '300', color: 'black' }}>{title}</Text>
     </TouchableOpacity>
   );
 };
 
 const App = () => {
+  return (<GestureHandlerRootView>
+    <Projects />
+  </GestureHandlerRootView>);
+}
+
+const Projects = () => {
   const [activeProject, setActiveProject] = useState(undefined);
 
   if (activeProject === undefined) {
     return (
       <SafeAreaView>
         <StatusBar barStyle={'dark-content'} />
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <ScrollView contentInsetAdjustmentBehavior="automatic" >
           <View
             style={{
               width: '100%',
@@ -63,12 +70,13 @@ const App = () => {
               marginTop: 5,
               marginBottom: 20,
             }}>
-            <Text style={{fontSize: 20, fontWeight: '700'}}>Projects</Text>
+            <Text style={{ fontSize: 20, fontWeight: '700' }}>Projects</Text>
           </View>
           <View
             style={{
               backgroundColor: Colors.white,
               paddingHorizontal: 10,
+              paddingBottom: 200,
             }}>
             <ProjectButton
               title="🦾 SVG First Test"

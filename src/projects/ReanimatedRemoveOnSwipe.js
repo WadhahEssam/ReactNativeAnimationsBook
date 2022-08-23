@@ -53,7 +53,7 @@ const ReanimatedRemoveOnSwipe = () => {
 
   return (
     <SafeAreaView>
-      <Text style={{fontSize: 60, marginStart: 20, marginVertical: 0}}>
+      <Text style={{fontSize: 60, marginStart: 20, marginVertical: 0, color: 'black'}}>
         Tasks
       </Text>
       <ScrollView
@@ -202,7 +202,7 @@ const TaskItem = ({task, onDismiss, simultaneousHandlers}) => {
             },
             taskStyle,
           ]}>
-          <Text>{task.title}</Text>
+          <Text style={{ color: 'black'}}>{task.title}</Text>
         </Animated.View>
       </PanGestureHandler>
     </View>
