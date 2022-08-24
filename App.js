@@ -28,6 +28,7 @@ import ReanimatedRemoveOnSwipe from './src/projects/ReanimatedRemoveOnSwipe';
 import ReanimatedCircularProgress from './src/projects/ReanimatedCircularProgress';
 import ReanimatedRippleEffect from './src/projects/ReanimatedRippleEffect';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import SVGPlayground from './src/projects/SVGPlayground';
 
 const ProjectButton = ({ title, setActiveProject }) => {
   return (
@@ -132,6 +133,12 @@ const Projects = () => {
                 setActiveProject('ReanimatedRippleEffect');
               }}
             />
+            <ProjectButton
+              title="🔲 SVG Playground"
+              setActiveProject={() => {
+                setActiveProject('SVGPlayground');
+              }}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -164,6 +171,9 @@ const Projects = () => {
   }
   if (activeProject === 'ReanimatedRippleEffect') {
     return <ReanimatedRippleEffect />;
+  }
+  if (activeProject === 'SVGPlayground') {
+    return <SVGPlayground />;
   }
 };
 
